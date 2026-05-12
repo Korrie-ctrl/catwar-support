@@ -12,8 +12,6 @@
 (function() {
     'use strict';
 
-    // ВАЖНО: обрати внимание, что в конце ссылки теперь support_claims.json
-    // Это создаст независимую табличку в базе специально для поддержки
     const DB_URL = 'https://catwar-support-default-rtdb.europe-west1.firebasedatabase.app//support_claims.json'; 
 
     if (window.location.pathname === '/' || window.location.pathname === '/index') {
