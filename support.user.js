@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CatWar Support
 // @namespace    http://tampermonkey.net/
-// @version      1
+// @version      1.2
 // @description  Добавляет кнопку "Занять" на страницу вопросов
 // @author       Берсерк
 // @match        https://catwar.net/*
@@ -158,6 +158,18 @@
                 }
             });
         }
+        document.addEventListener('submit', function(event) {
+            const form = event.target;
+            if (form && form.tagName === 'FORM') {
+                const catInput = form.querySelector('input[name="cat"]');
+                if (catInput && catInput.value) {
+                    const ticketId = catInput.value;
+                    if (claimsDb[ticketId] && claimsDb[ticketId].id === myId) {
+                        removeClaim(ticketId);
+                    }
+                }
+            }
+        });
 
         fetchClaims(); 
         setInterval(fetchClaims, 30000); 
